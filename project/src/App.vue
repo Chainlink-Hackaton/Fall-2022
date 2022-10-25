@@ -1,18 +1,23 @@
 <template>
-  <!--<Header></Header>
+  <!--<Header></Header>-->
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+  
 
+<br/>
+<br/>
   <div>
     <!-- "connect" click event is registered -->
->    <button v-if="!connected" @click="connect">Connect wallet</button>
+    <button v-if="!connected" @click="connect">Connect wallet</button>
     <button v-if="connected">Call contract</button>
     {{ contractResult }}
   </div>
+<br/>
+<br/>
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from "./components/HelloWorld.vue";
 //import Header from "./components/Footer.vue";
 import Web3 from "web3";
 
@@ -26,10 +31,10 @@ export default {
       web3 : new Web3(window.ethereum),
     }
   },
-  //components: {
-    //HelloWorld,
+  components: {
+    HelloWorld,
     //Header,
-  //},
+  },
   methods: {
     connect: function() {
       if (window.ethereum) {
