@@ -6,7 +6,7 @@ import "bootstrap/dist/js/bootstrap.js"
 
 import { createPinia } from "pinia"
 
-import router from "../router/index"
+import router from "./router/index"
 
 const pinia = createPinia()
 
