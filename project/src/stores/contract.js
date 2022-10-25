@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export default defineStore("LogIn", {
+export default defineStore("Contract", {
   state() {
     return {
       //Acá van las variables.

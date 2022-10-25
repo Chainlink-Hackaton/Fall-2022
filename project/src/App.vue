@@ -1,17 +1,46 @@
 <template>
+  <!--<Header></Header>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+
+  <div>
+    <!-- "connect" click event is registered -->
+>    <button v-if="!connected" @click="connect">Connect wallet</button>
+    <button v-if="connected">Call contract</button>
+    {{ contractResult }}
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from "./components/HelloWorld.vue";
+//import Header from "./components/Footer.vue";
+import Web3 from "web3";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+
+  data(){
+    return {
+      connected: false,
+      contractResult: "",
+      web3 : new Web3(window.ethereum),
+    }
+  },
+  //components: {
+    //HelloWorld,
+    //Header,
+  //},
+  methods: {
+    connect: function() {
+      if (window.ethereum) {
+        window.ethereum.request({method: "eth_requestAccounts"})
+        .then(() => {
+          this.connected = true
+        });
+      }
+    }
   }
-}
+};
 </script>
 
 <style>
