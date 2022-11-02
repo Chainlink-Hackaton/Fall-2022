@@ -19,7 +19,7 @@ interface IDebtRegistry {
         Status status;
     }
 
-    function createDebt(address lender, uint amount, uint timeToPay, uint numberOfPayments) external returns(uint Id) ;
+    function createDebt(address lender, uint amount, uint timeToPay, uint numberOfPayments) external returns(bytes32 Id) ;
     function acceptDebt(uint Id) external returns(bool succeed);
     function registerPayment(uint Id, bytes32 txhash) external returns(bool succeed) ;
 }
