@@ -28,7 +28,7 @@ describe("Registry", function (){
   }
 
   describe("Deployment", function () {
-    it("Should set the right status", async function(){
+    it("Should emit DebtCreated event", async function(){
         const { registry, borrower, lender, ONE_YEAR_IN_SECS, debtAmount, splits, token } = await loadFixture(deployOneYearDebtFixture);
     
         expect(await registry.connect(borrower).createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits))
