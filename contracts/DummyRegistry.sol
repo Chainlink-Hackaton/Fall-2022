@@ -9,6 +9,7 @@ contract DummyRegistry is IDebtRegistry {
 
     function createDebt(
         address lender,
+        address currency,
         uint amount,
         uint timeToPay,
         uint numberOfPayments
