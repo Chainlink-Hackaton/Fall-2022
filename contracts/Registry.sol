@@ -8,6 +8,7 @@ contract Registry is IDebtRegistry {
     mapping(address => uint256) public DebtCounter;
 
     event DebtCreated(bytes32 indexed id, address indexed borrower);
+    event DebtAccepted();
 
     function createDebt(
         address lender,
@@ -23,14 +24,26 @@ contract Registry is IDebtRegistry {
         d.Lender = lender;
         d.Currency = currency;
         d.Amount = amount;
-        d.Deadline = calculateDeadline(timeToPay);
+        //We store timeToPay here to use it when 
+        //the lender approve the Debt to calculate the Deadline
+        d.Deadline = timeToPay; 
         d.Split = numberOfPayments;
         d.status = Status.Pending;
         Debts[Id] = d;
         emit DebtCreated(Id, msg.sender);
     }
 
-    function acceptDebt(uint Id) external override returns(bool succeed) {}
+    function acceptDebt(bytes32 Id) external override returns(bool succeed) {
+        Debt storage debt = Debts[Id];
+        require(msg.sender == debt.Lender, "Registry: Only lender can accept a Debt");
+        debt.status = Status.Approved;
+        //Deadline is set up only after the 
+        //lender approved the Debt
+        uint timeToPay = debt.Deadline;
+        debt.Deadline = calculateDeadline(timeToPay);
+        emit DebtAccepted();
+        succeed = true;
+    }
 
     function registerPayment(uint Id, bytes32 txhash)
         external
@@ -38,5 +51,7 @@ contract Registry is IDebtRegistry {
         returns (bool succeed)
     {}
 
-    function calculateDeadline(uint timeToPay) internal returns(uint deadline) {}
+    function calculateDeadline(uint timeToPay) view internal returns(uint deadline) {
+        deadline = block.timestamp + timeToPay;
+    }
 }

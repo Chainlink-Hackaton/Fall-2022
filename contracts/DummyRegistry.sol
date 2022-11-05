@@ -17,7 +17,7 @@ contract DummyRegistry is IDebtRegistry {
         Id = keccak256(abi.encode(1));
     }
 
-    function acceptDebt(uint Id) external override returns (bool succeed) {
+    function acceptDebt(bytes32 Id) external override returns (bool succeed) {
         return true;
     }
 
