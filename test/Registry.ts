@@ -14,13 +14,15 @@ describe("Registry", function (){
     const ONE_GWEI = 1_000_000_000; 
 
     const debtAmount = ONE_GWEI;
-    const splits = 52;
+    const splits = 50;
 
     // Contracts are deployed using the first signer/account by default
     const [owner, borrower, lender] = await ethers.getSigners();
 
     const Token = await ethers.getContractFactory("Token");
     const token = await Token.deploy();
+    await token.connect(borrower).mint(debtAmount);
+
 
     const Registry = await ethers.getContractFactory("Registry");
     const registry = await Registry.deploy()
@@ -39,7 +41,7 @@ describe("Registry", function (){
     it("Should emit DebtCreated event", async function(){
         const { registry, borrower, lender, ONE_YEAR_IN_SECS, debtAmount, splits, token } = await loadFixture(deployOneYearDebtFixture);
     
-        expect(await registry.connect(borrower).createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits))
+        await expect( registry.connect(borrower).createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits))
         .to.emit(registry, 'DebtCreated').withArgs(anyValue, borrower.address);
     })
 
@@ -59,7 +61,8 @@ describe("Registry", function (){
 
     it("Only lender can accept debt", async function (){
       const { registry, borrower, lender, ONE_YEAR_IN_SECS, id } = await loadFixture(deployOneYearDebtFixture);
-      await  expect(registry.connect(borrower).acceptDebt(id)).to.be.revertedWith("Registry: Only lender can accept a Debt");
+      await  expect(registry.connect(borrower).acceptDebt(id))
+      .to.be.revertedWith("Registry: Only lender can accept a Debt");
       
       await expect(registry.connect(lender).acceptDebt(id))
       .to.emit(registry, "DebtAccepted");
@@ -71,5 +74,54 @@ describe("Registry", function (){
       expect(debt.Deadline).to.be.equal(ONE_YEAR_IN_SECS + latestTime);
     })
 
+    it("Only borrower can register a payment", async function (){
+      const { registry, borrower, lender, token, ONE_YEAR_IN_SECS, id } = await loadFixture(deployOneYearDebtFixture);
+      const payment = 20_000_000;
+      const tx = await token.connect(borrower).transfer(lender.address, payment);
+
+      await expect(registry.connect(borrower).registerPayment(id, tx.hash))
+      .to.be.revertedWith("Registry: Debt status is not approved");
+     
+      await registry.connect(lender).acceptDebt(id);
+      
+      await expect(registry.connect(lender).registerPayment(id, tx.hash))
+      .to.be.revertedWith("Registry: Only borrower can register a debt");
+
+      await expect(registry.connect(borrower).registerPayment(id, tx.hash))
+      .to.emit(registry, 'PaymentRegistered').withArgs(id, tx.hash);
+
+      const debt = await registry.Debts(id);
+      expect(debt.status).to.be.equal(1);
+
+      expect(await registry.getPaymentsCount(id)).to.be.equal(1);
+      const payments = await registry.getPayments(id)
+      expect(payments[0]).to.be.equal(tx.hash);
+    })
+
+    it("Should not have reach the Deadline", async function (){
+      const { registry, borrower, lender, token, ONE_YEAR_IN_SECS, id } = await loadFixture(deployOneYearDebtFixture);
+      const payment = 20_000_000;
+      const tx = await token.connect(borrower).transfer(lender.address, payment);
+      await registry.connect(lender).acceptDebt(id);
+
+      //We can increase the time in Hardhat Network
+      const deadline = (await time.latest()) + ONE_YEAR_IN_SECS;
+      await time.increaseTo(deadline);
+
+      await expect(registry.connect(borrower).registerPayment(id, tx.hash))
+      .to.be.revertedWith("Registry: too late to pay");
+    })
+
+    it("Should be able to change Debt status to default", async function(){
+      const { registry, borrower, lender, token, ONE_YEAR_IN_SECS, id } = await loadFixture(deployOneYearDebtFixture);
+      await registry.connect(lender).acceptDebt(id);
+      await expect(registry.setDebtToDefault(id)).to.be.revertedWith("Registry: Deadline not reached yet");
+      //We can increase the time in Hardhat Network
+      const deadline = (await time.latest()) + ONE_YEAR_IN_SECS;
+      await time.increaseTo(deadline);
+
+      await expect(registry.setDebtToDefault(id)).to.emit(registry, "DebtDefault").withArgs(id, borrower.address)
+    })
   })
+
 })
