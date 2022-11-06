@@ -1,10 +1,10 @@
 <template>
     <header>
-        <nav class="navbar bg-dark text-center text-white" :class="{active: showMenu}">
+        <nav class="navbar bg-primary text-center text-white" :class="{active: showMenu}">
             <!--<img src="../assets/logocheckme.png">-->
             <a href="#" class="nav-branding">NavBar</a>
 
-            <ul class="nav-menu bg-dark text-center text-white" :class="{active: this.showMenu}" @click="showMenu = !this.showMenu">
+            <ul class="nav-menu bg-primary text-center text-white" :class="{active: this.showMenu}" @click="showMenu = !this.showMenu">
                 <li class="nav-item">Home</li>
                 <li class="nav-item">Lender</li>
                 <li class="nav-item">Payer</li>
