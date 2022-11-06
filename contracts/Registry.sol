@@ -8,7 +8,8 @@ contract Registry is IDebtRegistry {
     mapping(address => uint256) public DebtCounter;
 
     event DebtCreated(bytes32 indexed id, address indexed borrower);
-    event DebtAccepted();
+    event DebtAccepted(bytes32 indexed id);
+    event RejectAccepted(bytes32 indexed id);
     event DebtPaid(bytes32 indexed id);
     event PaymentRegistered(bytes32 indexed id, bytes32 indexed txhash);
     event DebtDefault(bytes32 indexed Id, address indexed borrower);
@@ -46,7 +47,17 @@ contract Registry is IDebtRegistry {
         //lender approved the Debt
         uint timeToPay = debt.Deadline;
         debt.Deadline = calculateDeadline(timeToPay);
-        emit DebtAccepted();
+        emit DebtAccepted(Id);
+        succeed = true;
+    }
+
+    function rejectDebt(bytes32 Id) external override returns(bool succeed) {
+        Debt storage debt = Debts[Id];
+        require(msg.sender == debt.Lender, "Registry: Only lender can reject a Debt");
+        require(debt.status == Status.Pending, "Registry: Debt status is not pending");
+        debt.status = Status.Rejected;
+
+        emit RejectAccepted(Id);
         succeed = true;
     }
 

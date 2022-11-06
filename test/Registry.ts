@@ -65,13 +65,26 @@ describe("Registry", function (){
       .to.be.revertedWith("Registry: Only lender can accept a Debt");
       
       await expect(registry.connect(lender).acceptDebt(id))
-      .to.emit(registry, "DebtAccepted");
+      .to.emit(registry, "DebtAccepted").withArgs(id);;
 
       const debt = await registry.Debts(id);
       expect(debt.status).to.be.equal(1);
       const latestTime = await time.latest();
 
       expect(debt.Deadline).to.be.equal(ONE_YEAR_IN_SECS + latestTime);
+    })
+
+    it("Only lender can reject debt", async function (){
+      const { registry, borrower, lender, ONE_YEAR_IN_SECS, id } = await loadFixture(deployOneYearDebtFixture);
+      await  expect(registry.connect(borrower).rejectDebt(id))
+      .to.be.revertedWith("Registry: Only lender can reject a Debt");
+      
+      await expect(registry.connect(lender).rejectDebt(id))
+      .to.emit(registry, "RejectAccepted").withArgs(id);
+
+      const debt = await registry.Debts(id);
+      expect(debt.status).to.be.equal(2);
+
     })
 
     it("Only borrower can register a payment", async function (){
