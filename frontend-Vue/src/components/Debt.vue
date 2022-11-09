@@ -72,16 +72,23 @@ body::before {
   width: 100%;
   height: 100%;
 }
+
+
 .form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  display: flex;
+  flex-wrap: nowrap;
+
+  justify-content: center;    
+  flex-direction: column;
   background: #fff;
-  width: 285px;
-  margin: -140px 0 0 -182px;
-  padding: 40px;
+  margin-top: 15%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 15%;
+  padding: 30px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
+
 .form h2 {
   margin: 0 0 20px;
   line-height: 1;
@@ -102,7 +109,7 @@ body::before {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 14px;
-  font-wght: 400;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-transition: 0.2s linear;

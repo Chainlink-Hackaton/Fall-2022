@@ -14,9 +14,9 @@
   
 <br/>
 <br/>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
   
-  <FooterComponent></FooterComponent>-->
+  <FooterComponent></FooterComponent>
 </template>
 
 <script>
