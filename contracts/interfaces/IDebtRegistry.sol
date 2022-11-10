@@ -15,11 +15,12 @@ interface IDebtRegistry {
         uint Amount;
         uint Deadline;
         uint Split;
-        uint[] Payments;
+        bytes32[] Payments;
         Status status;
     }
 
     function createDebt(address lender,  address currency, uint amount, uint timeToPay, uint numberOfPayments) external returns(bytes32 Id) ;
     function acceptDebt(bytes32 Id) external returns(bool succeed);
-    function registerPayment(uint Id, bytes32 txhash) external returns(bool succeed) ;
+    function rejectDebt(bytes32 Id) external returns(bool succeed);
+    function registerPayment(bytes32 Id, bytes32 txhash) external returns(bool succeed) ;
 }

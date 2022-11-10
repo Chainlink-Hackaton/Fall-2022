@@ -21,7 +21,10 @@ contract DummyRegistry is IDebtRegistry {
         return true;
     }
 
-    function registerPayment(uint Id, bytes32 txhash)
+    function rejectDebt(bytes32 Id) external override returns(bool succeed){}
+
+
+    function registerPayment(bytes32 Id, bytes32 txhash)
         external
         override
         returns (bool succeed)
