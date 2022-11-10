@@ -143,7 +143,7 @@ a {
     }
 
     .navbar.active {
-        margin-bottom: 6rem !important;
+        margin-bottom: 12rem !important;
     }
 
     .hide {

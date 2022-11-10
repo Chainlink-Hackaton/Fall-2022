@@ -81,10 +81,10 @@ body::before {
   justify-content: center;    
   flex-direction: column;
   background: #fff;
-  margin-top: 15%;
+  margin-top: 5%;
   margin-left: 20%;
   margin-right: 20%;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
   padding: 30px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
