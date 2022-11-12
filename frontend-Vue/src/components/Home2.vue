@@ -39,8 +39,8 @@ export default {
     background:
     url("https://38.media.tumblr.com/d23deac40b06633b79520a8552f40b94/tumblr_nb1uhrRrge1st5lhmo1_1280.jpg")
     no-repeat center center fixed;
-  padding: 5%;
-  margin: 0% 5% 0% 5%;
+  padding: 50px;
+  margin: 0 50px 0 50px;
   border-radius: 50px;
 }
 
@@ -67,7 +67,7 @@ export default {
 }
 
 .text{
-  margin-left: 30%;
+  margin-left: 30px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
