@@ -2,7 +2,7 @@
     <header>
         <nav class="navbar bg-primary text-center text-white" :class="{active: showMenu}">
             <!--<img src="../assets/logocheckme.png">-->
-            <img class= "img-logo" src="../assets/Agro-Lend(Logo).png" alt="AgroLend Logo">
+            <img class= "img-logo" src="../assets/Logo para Diseño de Videojuegos Recreativos Atrevido y Estético Blanco y Negro (1).png" alt="AgroLend Logo">
             <!--<a href="#" class="nav-branding">NavBar</a>-->
 
             <ul class="nav-menu bg-primary text-center text-white" :class="{active: this.showMenu}" @click="showMenu = !this.showMenu">
