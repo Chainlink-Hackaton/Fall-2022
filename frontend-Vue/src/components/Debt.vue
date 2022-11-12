@@ -48,32 +48,6 @@ export default {
 };
 </script>
 <style>
-body {
-  background: #44c4e7
-    url("https://38.media.tumblr.com/d23deac40b06633b79520a8552f40b94/tumblr_nb1uhrRrge1st5lhmo1_1280.jpg")
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  font-family: "Roboto";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body::before {
-  z-index: -1;
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #44c4e7;
-  /* IE Fallback */
-  background: rgba(68, 196, 231, 0.8);
-  width: 100%;
-  height: 100%;
-}
-
-
 .form {
   display: flex;
   flex-wrap: nowrap;
