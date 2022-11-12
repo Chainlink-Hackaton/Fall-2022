@@ -17,6 +17,7 @@
   <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 <br>
 <Home2></Home2>
+<Techs></Techs>
 <br>
   <FooterComponent></FooterComponent>
 </template>
@@ -28,6 +29,7 @@ import FooterComponent from "./components/Footer.vue"
 import Web3Test from "./components/Web3Test.vue"
 import Debt from "./components/Debt.vue"
 import Home2 from "./components/Home2.vue"
+import Techs from "./components/Techs.vue"
 
 //import Header from "./components/Footer.vue";
 //import Web3 from "web3";
@@ -46,6 +48,7 @@ export default {
     FooterComponent,
     Debt,
     Home2,
+    Techs,
   },
   methods: {
   }
@@ -53,7 +56,9 @@ export default {
 </script>
 
 <style>
-
+*{
+  font-family: "Josefin Sans", sans-serif;
+}
 
 body {
   background: #44c4e7
@@ -80,4 +85,34 @@ body::before {
   height: 100%;
 }
 
+h1 {
+  font-size: 60px;
+  font-weight: 900;
+  color: #0d6efd;
+  line-height: 7rem;
+}
+
+h2 {
+  font-size: 50px;
+  font-weight: 700;
+  color: var(#0d6efd);
+}
+
+h3 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(#0d6efd);
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(#0d6efd);
+}
+
+p {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(#0d6efd);
+}
 </style>

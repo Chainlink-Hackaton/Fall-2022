@@ -9,8 +9,8 @@
         </div>
 
         <div class="text">
-          <h1>Crypto Lendes</h1>
-          <h2>Create and acept lends for everyone</h2>
+          <h1>Crypto Lending</h1>
+          <p>is a form of decentralized finance (DeFi) where investors lend their crypto to borrowers in exchange for interest payments</p>
           <p></p>
         </div>
       </div>
@@ -26,13 +26,19 @@ export default {
 };
 </script>
 <style>
+*{
+  font-family: "Heebo", sans-serif;
+}
+
 #hero-banner {
   margin: 0px;
   padding: 0px;
   transition: all 0.6s;
   display: flex;
   flex-direction: row;
-  background-color: white;
+    background:
+    url("https://38.media.tumblr.com/d23deac40b06633b79520a8552f40b94/tumblr_nb1uhrRrge1st5lhmo1_1280.jpg")
+    no-repeat center center fixed;
   padding: 5%;
   margin: 0% 5% 0% 5%;
   border-radius: 50px;
@@ -41,10 +47,13 @@ export default {
 .container-banner {
   max-width: 1440px;
   margin: 0 170px 0 170px;
+  padding: 30px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
 }
 
 #images-hero {
@@ -59,6 +68,10 @@ export default {
 
 .text{
   margin-left: 30%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  text-align: center;
 }
 
 .img-fluid {
@@ -99,5 +112,27 @@ export default {
     transform: translateY(-10px);
   }
 }
+
+@media(max-width: 1020px) {
+  #hero-banner{
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .container-banner{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .text{
+    margin: 0;
+    padding: 0;
+  }
+};
+
+
+
 </style>
       
