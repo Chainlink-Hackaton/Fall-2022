@@ -1,16 +1,20 @@
+import { ethers } from "hardhat";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import Web3 from "web3"
+
 import { ethers } from 'ethers';
 
 import Registry from '../../../artifacts/contracts/Registry.sol/Registry.json'
 
-export default defineStore("Contract", {
+
+export default defineStore("Registry", {
   state() {
     return {
       //Acá van las variables.
       connected: ref(false),
       contractResult: ref(""),
+      Ids: [],
     };
   },
   actions: {
@@ -32,7 +36,28 @@ export default defineStore("Contract", {
       contract.methods.getMessage().call()
         .then(result => this.contractResult = result);
         console.log("rompe 3")
-    }
+    },
     //Acá van las funciones.
+
+    async createDebt(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const registryAddress = process.env.REGISTRY_CONTRACT_ADDRESS;
+        const registry = ethers.ContractFactory.getContract(registryAddress, Registry.abi, provider)
+        //TO DO: Here a need those values from the form
+        const lenderAddress = ""
+        const tokenAddress = ""
+        const debtAmount = ""
+        const deadline = ""
+        const splits = ""
+        //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
+       const tx = await registry.createDebt(lenderAddress, tokenAddress, debtAmount, deadline, splits)
+       console.log(tx); //Here we are looking for the event DebtCreated(Id, msg.sender);
+       const events = registry.filters.DebtCreated(null, /* Here goes user address */)
+       for(let event in events){
+          this.Ids.push(event.id)   //Id's of each event for later query
+       }
+       console.log(this.Ids)//If we get here and show the Id of the Debt, we make it!!!
+    }
+
   },
 });
