@@ -124,6 +124,9 @@ export default {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
   }
 
   .text{

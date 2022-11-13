@@ -1,22 +1,19 @@
 <template>
         <div class="client-logo">
             <a href="#" target="_blank">
-                <img class="logos" src="../assets/Chainlink_Logo_Blue.svg" alt="ChainLink">
+                <img class="logos" src="../assets/chainlink-logo.png" alt="ChainLink">
             </a>
            
             <a href="#" target="_blank">
-                <img class="logos" src="./images/logos/google-logo.svg" alt="Google">
+                <img class="logos otherLogo" src="../assets/solidity-logo.png" alt="Solidity">
             </a>
             
             <a href="#" target="_blank">
-                <img class="logos" src="./images/logos/microsoft-logo.svg" alt="Microsoft">
+                <img class="logos vueLogo" src="../assets/vue-logo.png" alt="Vue">
             </a>
             
             <a href="#" target="_blank">
-                <img class="logos" src="./images/logos/fedex-logo.svg" alt="Fedex">
-            </a>
-            <a href="#" target="_blank">
-                <img class="logos" src="./images/logos/amazon-logo.svg" alt="Amazon">
+                <img class="logos otherLogo" src="../assets/pinia.svg" alt="Pinia">
             </a>
         </div>
 </template>
@@ -42,7 +39,7 @@ export default {
 
 
 .logos {
-  width: 12rem;
+  width: 4rem;
   filter: invert(40%) sepia(8%) saturate(15%) hue-rotate(39deg) brightness(93%)
     contrast(86%);
   transition: 0.5s;
@@ -50,6 +47,15 @@ export default {
 .logos:hover {
   filter: none;
 }
+
+.otherLogo{
+  width: 3rem;
+}
+
+.vueLogo{
+  width: 6rem;
+}
+
 
 .prueba-logo {
   mask-image: url(../images/logos/amazon-logo.svg);

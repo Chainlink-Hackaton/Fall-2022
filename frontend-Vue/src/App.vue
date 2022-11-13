@@ -18,6 +18,7 @@
 <br>
 <Home2></Home2>
 <Techs></Techs>
+<Services></Services>
 <br>
   <FooterComponent></FooterComponent>
 </template>
@@ -30,6 +31,7 @@ import Web3Test from "./components/Web3Test.vue"
 import Debt from "./components/Debt.vue"
 import Home2 from "./components/Home2.vue"
 import Techs from "./components/Techs.vue"
+import Services from "./components/Services.vue"
 
 //import Header from "./components/Footer.vue";
 //import Web3 from "web3";
@@ -49,6 +51,7 @@ export default {
     Debt,
     Home2,
     Techs,
+    Services,
   },
   methods: {
   }
