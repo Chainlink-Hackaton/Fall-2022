@@ -1,22 +1,22 @@
 <template>
-    <h2>Crypto Lends Services</h2>
+    <h1><b>Crypto Lends Services</b></h1>
             <div id="cards-projects" class="cards">
                 <div class="card-box card-box-hover">
-                <img src="../assets/Historia_story_instagram_notificación_movil_recordatorio_minimalista__1_-removebg-preview.png" alt="img">
+                <img src="https://openledger.info/insights/wp-content/uploads/2019/01/banks-blockchain-948x640.png" alt="img">
                 <h3>Create</h3>
                 <p>Yo can create any kind of debt</p>
                 <a href="./pages/simplify.html">Learn more</a>
             </div>
             <div class="card-box card-box-hover">
-                <img src="../assets/Post_instagram_iphone_tienda_online-removebg-preview.png" alt="img">
+                <img src="https://buybitcoinworldwide.com/pages/info/whoaccepts/img/who-accepts-bitcoin.png" alt="img">
                 <h3>Accept</h3>
                 <p>As a lender you can accept debts of any user.</p>
                 <a href="#">Learn more</a>
             </div>
             <div class="card-box card-box-hover">
-                <img src="../assets/Post_instagram_iphone_tienda_online-removebg-preview.png" alt="img">
+                <img src="https://www.antiersolutions.com/wp-content/uploads/2021/11/gateway-1.jpg" alt="img">
                 <h3>Pay</h3>
-                <p>Use our platform to pay your debts.</p>
+                <p>Use our platform to pay your Crypto Lends.</p>
                 <a href="#">Learn more</a>
             </div>
             </div>
@@ -32,8 +32,14 @@ export default {
 </script>
 <style>
 
-h2{
+h1{
     text-align: center;
+    color: white;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: white;
+    border-radius: 50px;
+    margin: 50px;
 }
 
 .cards {
@@ -46,7 +52,7 @@ h2{
 
 img{
     margin-bottom: 30px;
-    width: 100%;
+    width: 80%;
 }
 
 .card-box {
