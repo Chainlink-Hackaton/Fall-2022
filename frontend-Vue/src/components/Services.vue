@@ -39,7 +39,8 @@ h1{
     padding-bottom: 5%;
     background-color: white;
     border-radius: 50px;
-    margin: 50px;
+    margin:  50px;
+    margin-bottom: 50px !important;
 }
 
 .cards {
@@ -53,6 +54,7 @@ h1{
 img{
     margin-bottom: 30px;
     width: 80%;
+    border-radius: 50px 50px 0px 0px;
 }
 
 .card-box {
