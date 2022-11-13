@@ -94,6 +94,7 @@ a {
 
 .hamburger {
     visibility: hidden;
+    padding-right: 20px;
 }
 
 
