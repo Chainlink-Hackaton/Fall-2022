@@ -40,11 +40,18 @@
 -->
 
 <script>
+/*import {mapStores} from "pinia";
+import useRegistryStore from "../stores/registry.js"*/
+
 export default {
   name: "Debt",
   setup() {
     return {};
   },
+
+  /*computed: {
+    ...mapStores(useRegistryStore)
+  }*/
 };
 </script>
 <style>
