@@ -2,7 +2,7 @@
   <div class="form animated flipInX">
     <h2>Create a Debt</h2>
     <form>
-      <input v-model="RegistryStore.lenderAddres" placeholder="Lender Address" type="text" />
+      <input v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
 
       <input v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
       <datalist id="currencys">
@@ -41,6 +41,7 @@
 -->
 
 <script>
+import { ref } from "vue"
 import {mapStores} from "pinia";
 import useRegistryStore from "../stores/registry.js"
 
