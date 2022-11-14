@@ -1,4 +1,4 @@
-import { ethers } from "hardhat";
+/*import { ethers } from "hardhat";*/
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import Web3 from "web3"

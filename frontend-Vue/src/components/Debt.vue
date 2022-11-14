@@ -40,8 +40,8 @@
 -->
 
 <script>
-/*import {mapStores} from "pinia";
-import useRegistryStore from "../stores/registry.js"*/
+import {mapStores} from "pinia";
+import useRegistryStore from "../stores/registry.js"
 
 export default {
   name: "Debt",
@@ -49,9 +49,9 @@ export default {
     return {};
   },
 
-  /*computed: {
+  computed: {
     ...mapStores(useRegistryStore)
-  }*/
+  }
 };
 </script>
 <style>
