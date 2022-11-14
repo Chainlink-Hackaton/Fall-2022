@@ -15,6 +15,11 @@ export default defineStore("Registry", {
       connected: ref(false),
       contractResult: ref(""),
       Ids: [],
+      lenderAddress : ref(""),
+      tokenAddress : ref(""),
+      debtAmount : ref(""),
+      deadline : ref(""),
+      splits : ref(""),
     };
   },
   actions: {
@@ -44,18 +49,15 @@ export default defineStore("Registry", {
         const registryAddress = process.env.REGISTRY_CONTRACT_ADDRESS;
         const registry = ethers.ContractFactory.getContract(registryAddress, Registry.abi, provider)
         //TO DO: Here a need those values from the form
-        const lenderAddress = ""
-        const tokenAddress = ""
-        const debtAmount = ""
-        const deadline = ""
-        const splits = ""
+
         //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
-       const tx = await registry.createDebt(lenderAddress, tokenAddress, debtAmount, deadline, splits)
+       const tx = await registry.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits)
        console.log(tx); //Here we are looking for the event DebtCreated(Id, msg.sender);
        const events = registry.filters.DebtCreated(null, /* Here goes user address */)
        for(let event in events){
           this.Ids.push(event.id)   //Id's of each event for later query
        }
+       
        console.log(this.Ids)//If we get here and show the Id of the Debt, we make it!!!
     }
 

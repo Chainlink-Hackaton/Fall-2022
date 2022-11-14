@@ -2,17 +2,18 @@
   <div class="form animated flipInX">
     <h2>Create a Debt</h2>
     <form>
-      <input placeholder="Lender Address" type="text" />
+      <input v-model="RegistryStore.lenderAddres" placeholder="Lender Address" type="text" />
 
-      <input placeholder="Currency" list="currencys" name="currency" id="list" />
+      <input v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
       <datalist id="currencys">
         <option value="ETH"></option>
         <option value="SOL"></option>
       </datalist>
 
-      <input placeholder="Amount" type="text" />
 
-      <input placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
+      <input v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
+
+      <input v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
       <datalist id="timeToPay">
         <option value="3 months"></option>
         <option value="6 months"></option>
@@ -20,14 +21,14 @@
         <option value="12 months"></option>
       </datalist>
 
-      <input placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
+      <input v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
       <datalist id="numberOfPayments">
         <option value="3 payments"></option>
         <option value="6 payments"></option>
         <option value="9 payments"></option>
         <option value="12 payments"></option>
       </datalist>
-      <button>Registry Debt</button>
+      <button @click="RegistryStore.createDebt()">Registry Debt</button>
     </form>
   </div>
 </template>
