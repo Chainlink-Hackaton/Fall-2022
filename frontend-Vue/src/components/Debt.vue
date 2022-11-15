@@ -28,6 +28,8 @@
         <option value="9 payments"></option>
         <option value="12 payments"></option>
       </datalist>
+      <button @click="RegistryStore.connect()">Connect</button>
+      
       <button @click="RegistryStore.createDebt()">Registry Debt</button>
     </form>
   </div>
@@ -48,14 +50,20 @@ import useRegistryStore from "../stores/registry.js"
 export default {
   name: "Debt",
   setup() {
-    return {};
+    return {
+    };
   },
+
+  methods: {
+
+  },  
 
   computed: {
     ...mapStores(useRegistryStore)
   }
 };
 </script>
+
 <style>
 .form {
   display: flex;

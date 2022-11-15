@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
   <Debt></Debt>
-  <!--<Web3Test></Web3Test>
+ <!-- <Web3Test></Web3Test>
 <br/>
 <br/>
 <NavBar />
@@ -14,13 +14,13 @@
   
 <br/>
 <br/>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 <br>
-<!--<Home2></Home2>
+<Home2></Home2>
 <Techs></Techs>
-<Services></Services>
+<Services></Services>-->
 <br>
-  <FooterComponent></FooterComponent>-->
+  <FooterComponent></FooterComponent>
 </template>
 
 <script>

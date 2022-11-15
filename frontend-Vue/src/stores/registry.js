@@ -13,13 +13,12 @@ export default defineStore("Registry", {
     return {
       //Acá van las variables.
       connected: ref(false),
-      contractResult: ref(""),
       Ids: [],
-      lenderAddress : ref(""),
-      tokenAddress : ref(""),
-      debtAmount : ref(""),
-      deadline : ref(""),
-      splits : ref(""),
+      lenderAddress : ref("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"),
+      tokenAddress : ref("0x90F79bf6EB2c4f870365E785982E1f101E93b906"),
+      debtAmount : ref(10),
+      deadline : ref(365 * 24 * 60 * 60),
+      splits : ref(50),
     };
   },
   actions: {
@@ -32,7 +31,7 @@ export default defineStore("Registry", {
       }
     },
 
-    callContract(){
+    /*callContract(){
       let web3 = new Web3(window.ethereum);
       let contractAddress = '0x44E84A10341BF772906c37fFc30CDbb132eA35f2';
       let abi = JSON.parse(`[{"inputs":[],"name":"getMessage","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_message","type":"string"}],"name":"setMessage","outputs":[],"stateMutability":"nonpayable","type":"function"}]`);
@@ -41,7 +40,7 @@ export default defineStore("Registry", {
       contract.methods.getMessage().call()
         .then(result => this.contractResult = result);
         console.log("rompe 3")
-    },
+    },*/
     //Acá van las funciones.
 
     async createDebt(){
@@ -51,7 +50,8 @@ export default defineStore("Registry", {
         //TO DO: Here a need those values from the form
 
         //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
-       const tx = await registry.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits)
+       try{const tx = await registry.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits)}
+       catch{console.log("Fallo loco")}
        console.log(tx); //Here we are looking for the event DebtCreated(Id, msg.sender);
        const events = registry.filters.DebtCreated(null, /* Here goes user address */)
        for(let event in events){

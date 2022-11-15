@@ -9,7 +9,9 @@
                 <li class="nav-item">Home</li>
                 <li class="nav-item">Lender</li>
                 <li class="nav-item">Payer</li>
+                <li><button type="button" @click="RegistryStore.connect()"></button></li>
             </ul>
+
 
             <div class="hamburger" :class="{active: this.showMenu}" @click="showMenu = !this.showMenu">
                 <span class="bar"></span>
@@ -22,7 +24,7 @@
 
 <script>
 import { mapStores } from "pinia";
-import useContractStore from "../stores/contract"
+import useRegistryStore from "../stores/registry.js"
 //import router from "../router/index"
 
 export default {
@@ -33,7 +35,7 @@ export default {
         }
     },
     computed: {
-        ...mapStores(useContractStore),
+        ...mapStores(useRegistryStore),
     },
 };
 </script>
