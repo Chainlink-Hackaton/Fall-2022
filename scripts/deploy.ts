@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 
 async function main() {
 
-  const Registry = await ethers.getContractFactory("DummyRegistry");
+  const Registry = await ethers.getContractFactory("Registry");
   const registry = await Registry.deploy();
   console.log(`Registry deployed to ${registry.address}`);
 

@@ -30,7 +30,7 @@
       </datalist>
       <button @click="RegistryStore.connect()">Connect</button>
       
-      <button @click="RegistryStore.createDebt()">Registry Debt</button>
+      <button @click.prevent="RegistryStore.createDebt()">Registry Debt</button>
     </form>
   </div>
 </template>
