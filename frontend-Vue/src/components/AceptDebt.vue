@@ -1,22 +1,22 @@
 <template>
   <div class="form animated flipInX">
-    <h2>Acept a Debt</h2>
+    <h2>Accept a Debt</h2>
     <form>
-      <input v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
+      <input disabled v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
 
-      <input v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
-
-
-
-      <input v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
-
-      <input v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
+      <input disabled v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
 
 
-      <input v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
+
+      <input disabled v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
+
+      <input disabled v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
+
+
+      <input disabled v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
 
     
-      <button @click.prevent="RegistryStore.createDebt()">Acept Debt</button>
+      <button @click.prevent="RegistryStore.createDebt()">Accept Debt</button>
     </form>
   </div>
 </template>
