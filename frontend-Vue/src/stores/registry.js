@@ -8,11 +8,13 @@ import { ethers } from 'ethers';
 import Registry from '../../../artifacts/contracts/Registry.sol/Registry.json'
 
 
+
 export default defineStore("Registry", {
   state() {
     return {
       //Acá van las variables.
       connected: ref(false),
+      userAddress: ref(""),
       Ids: [],
       lenderAddress : ref("0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"),
       tokenAddress : ref("0x90F79bf6EB2c4f870365E785982E1f101E93b906"),
@@ -26,10 +28,20 @@ export default defineStore("Registry", {
     connect(){
       if (window.ethereum) {
         window.ethereum.request({method: "eth_requestAccounts"})
-        .then(() => {
+        .then((address) => {
           this.connected = true
+          this.userAddress = address[0]
+          console.log(this.userAddress)
+          // const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          // const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+
+
         });
+
+        
       }
+
+
     },
 
     /*callContract(){
@@ -49,336 +61,7 @@ export default defineStore("Registry", {
         let web3 = new Web3(window.ethereum);
         console.log("after provider")
         const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-        let abi = JSON.parse(`[
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "DebtAccepted",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "id",
-                  "type": "bytes32"
-                },
-                {
-                  "indexed": true,
-                  "internalType": "address",
-                  "name": "borrower",
-                  "type": "address"
-                }
-              ],
-              "name": "DebtCreated",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                },
-                {
-                  "indexed": true,
-                  "internalType": "address",
-                  "name": "borrower",
-                  "type": "address"
-                }
-              ],
-              "name": "DebtDefault",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "DebtPaid",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "id",
-                  "type": "bytes32"
-                },
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "txhash",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "PaymentRegistered",
-              "type": "event"
-            },
-            {
-              "anonymous": false,
-              "inputs": [
-                {
-                  "indexed": true,
-                  "internalType": "bytes32",
-                  "name": "id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "RejectAccepted",
-              "type": "event"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-                }
-              ],
-              "name": "DebtCounter",
-              "outputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "Debts",
-              "outputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "address",
-                  "name": "Owner",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "Lender",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "Currency",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "Amount",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "Deadline",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "Split",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "enum IDebtRegistry.Status",
-                  "name": "status",
-                  "type": "uint8"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "acceptDebt",
-              "outputs": [
-                {
-                  "internalType": "bool",
-                  "name": "succeed",
-                  "type": "bool"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "address",
-                  "name": "lender",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "currency",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "amount",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "timeToPay",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "numberOfPayments",
-                  "type": "uint256"
-                }
-              ],
-              "name": "createDebt",
-              "outputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "getPayments",
-              "outputs": [
-                {
-                  "internalType": "bytes32[]",
-                  "name": "",
-                  "type": "bytes32[]"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "getPaymentsCount",
-              "outputs": [
-                {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-                }
-              ],
-              "stateMutability": "view",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                },
-                {
-                  "internalType": "bytes32",
-                  "name": "txhash",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "registerPayment",
-              "outputs": [
-                {
-                  "internalType": "bool",
-                  "name": "succeed",
-                  "type": "bool"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "rejectDebt",
-              "outputs": [
-                {
-                  "internalType": "bool",
-                  "name": "succeed",
-                  "type": "bool"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            },
-            {
-              "inputs": [
-                {
-                  "internalType": "bytes32",
-                  "name": "Id",
-                  "type": "bytes32"
-                }
-              ],
-              "name": "setDebtToDefault",
-              "outputs": [
-                {
-                  "internalType": "bool",
-                  "name": "succeed",
-                  "type": "bool"
-                }
-              ],
-              "stateMutability": "nonpayable",
-              "type": "function"
-            }
-          ]`)
-        const registry = new web3.eth.Contract(abi, registryAddress)
+        const registry = new web3.eth.Contract(Registry.abi, registryAddress)
         //TO DO: Here a need those values from the form
         console.log("after registry")
 
