@@ -2,6 +2,8 @@ import App from "../App.vue"
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Debt from '../views/Debt.vue'
+import AceptDebt from '../views/AceptDebt.vue'
+
 
  
 const routes = [
@@ -15,6 +17,11 @@ const routes = [
     name: 'Debt',
     component: Debt,
   },
+  {
+    path: '/acept',
+    name: 'AceptDebt',
+    component: AceptDebt,
+  }
 
 ];
  
