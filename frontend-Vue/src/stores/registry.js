@@ -15,6 +15,7 @@ export default defineStore("Registry", {
       //Acá van las variables.
       connected: ref(false),
       userAddress: ref(""),
+      registry: ref(),
       Ids: [],
       lenderAddress : ref("0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"),
       tokenAddress : ref("0x90F79bf6EB2c4f870365E785982E1f101E93b906"),
@@ -32,13 +33,24 @@ export default defineStore("Registry", {
           this.connected = true
           this.userAddress = address[0]
           console.log(this.userAddress)
-          // const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-          // const registry = new web3.eth.Contract(Registry.abi, registryAddress)
-
-
+          let web3 = new Web3(window.ethereum);
+          const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+          registry.getPastEvents('DebtCreated', {
+            filter: {lender: this.userAddress}, // Using an array means OR: e.g. 20 or 23
+            fromBlock: 0,
+            toBlock: 'latest'
+          }, async function(error, events){ 
+            //console.log(events);
+            for(let e in events){
+              //console.log(events[e].returnValues.id)
+              const id = events[e].returnValues.id
+            //   console.log(id)
+            const debt = await registry.methods.Debts(id).call();
+            console.log(debt)
+            }
+          })
         });
-
-        
       }
 
 

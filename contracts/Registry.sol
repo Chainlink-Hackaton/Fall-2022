@@ -7,7 +7,7 @@ contract Registry is IDebtRegistry {
     mapping(bytes32 => Debt) public Debts;
     mapping(address => uint256) public DebtCounter;
 
-    event DebtCreated(bytes32 indexed id, address indexed borrower);
+    event DebtCreated(bytes32 indexed id, address indexed borrower, address indexed lender);
     event DebtAccepted(bytes32 indexed id);
     event RejectAccepted(bytes32 indexed id);
     event DebtPaid(bytes32 indexed id);
@@ -35,7 +35,7 @@ contract Registry is IDebtRegistry {
         d.Split = numberOfPayments;
         d.status = Status.Pending;
         Debts[Id] = d;
-        emit DebtCreated(Id, msg.sender);
+        emit DebtCreated(Id, msg.sender, lender);
     }
 
     function acceptDebt(bytes32 Id) external override returns(bool succeed) {
