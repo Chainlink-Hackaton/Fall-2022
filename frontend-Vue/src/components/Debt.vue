@@ -28,8 +28,7 @@
         <option value="9 payments"></option>
         <option value="12 payments"></option>
       </datalist>
-      <button @click="RegistryStore.connect()">Connect</button>
-      
+    
       <button @click.prevent="RegistryStore.createDebt()">Registry Debt</button>
     </form>
   </div>

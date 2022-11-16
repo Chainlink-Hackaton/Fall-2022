@@ -27,7 +27,7 @@ export default defineStore("Registry", {
       if (window.ethereum) {
         window.ethereum.request({method: "eth_requestAccounts"})
         .then(() => {
-          this.connected = ref(true)
+          this.connected = true
         });
       }
     },

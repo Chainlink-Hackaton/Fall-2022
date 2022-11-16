@@ -9,8 +9,13 @@
                 <li class="nav-item">Home</li>
                 <li class="nav-item">Lender</li>
                 <li class="nav-item">Payer</li>
-                <li><button type="button" @click="RegistryStore.connect()"></button></li>
             </ul>
+
+            <div>
+                <button v-if="RegistryStore.connected == false" class = "btn btn-light btn-met nav-item " type="button" @click="RegistryStore.connect()">Connect<img class="metamask-logo" src="../assets/Metamask.png" alt="Metamask Logo"/></button>
+                <button v-else="RegistryStore.connected == true" class = "btn btn-light btn-met nav-item " type="button">Connected<img class="metamask-logo" src="../assets/Metamask.png" alt="Metamask Logo"/></button>
+            </div>
+
 
 
             <div class="hamburger" :class="{active: this.showMenu}" @click="showMenu = !this.showMenu">
@@ -86,6 +91,18 @@ a {
     width: 120px;
 }
 
+.btn-met{
+    padding-left: 18 !important;
+    color: blue;
+    margin-right: 50px;
+}
+
+.metamask-logo{
+    padding-left: 0px;
+    margin: 0px;
+    width: 50px;
+}
+
 .nav-link {
     transition: 0.7s ease;
 }
@@ -95,6 +112,7 @@ a {
 }
 
 .hamburger {
+    display: none;
     visibility: hidden;
     padding-right: 20px;
 }
