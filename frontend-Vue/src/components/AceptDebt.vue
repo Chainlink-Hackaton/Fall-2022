@@ -1,35 +1,22 @@
 <template>
   <div class="form animated flipInX">
-    <h2>Create a Debt</h2>
+    <h2>Acept a Debt</h2>
     <form>
       <input v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
 
       <input v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
-      <datalist id="currencys">
-        <option value="ETH"></option>
-        <option value="SOL"></option>
-      </datalist>
+
 
 
       <input v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
 
       <input v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
-      <datalist id="timeToPay">
-        <option value="3 months"></option>
-        <option value="6 months"></option>
-        <option value="9 months"></option>
-        <option value="12 months"></option>
-      </datalist>
+
 
       <input v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
-      <datalist id="numberOfPayments">
-        <option value="3 payments"></option>
-        <option value="6 payments"></option>
-        <option value="9 payments"></option>
-        <option value="12 payments"></option>
-      </datalist>
+
     
-      <button @click.prevent="RegistryStore.createDebt()">Registry Debt</button>
+      <button @click.prevent="RegistryStore.createDebt()">Acept Debt</button>
     </form>
   </div>
 </template>
