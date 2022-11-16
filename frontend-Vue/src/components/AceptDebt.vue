@@ -2,11 +2,9 @@
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
     <form>
-      <input disabled v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
+      <input disabled v-model="RegistryStore.debtAmount" placeholder="Lender Address" type="text" />
 
       <input disabled v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
-
-
 
       <input disabled v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
 
@@ -46,6 +44,10 @@ export default {
 
   computed: {
     ...mapStores(useRegistryStore)
+  },
+
+  mounted(){
+    this.RegistryStore.connect()
   }
 };
 </script>
