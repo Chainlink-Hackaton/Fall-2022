@@ -31,6 +31,7 @@ export default {
 }
 
 #hero-banner {
+  margin-top: 20px !important;
   margin: 0px;
   padding: 0px;
   transition: all 0.6s;
