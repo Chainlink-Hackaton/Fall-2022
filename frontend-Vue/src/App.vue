@@ -1,7 +1,8 @@
 <template>
   <Header></Header>
-  <Debt></Debt>
- <!-- <Web3Test></Web3Test>
+  <router-view :key="$route.path"></router-view>
+  <!-- <Debt></Debt>
+ <Web3Test></Web3Test>
 <br/>
 <br/>
 <NavBar />
