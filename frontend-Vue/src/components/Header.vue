@@ -97,6 +97,10 @@ a {
     margin-right: 50px;
 }
 
+.btn-light{
+    --bs-btn-color: #0d6efd !important
+}
+
 .metamask-logo{
     padding-left: 0px;
     margin: 0px;
