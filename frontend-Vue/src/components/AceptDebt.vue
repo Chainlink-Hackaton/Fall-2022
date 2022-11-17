@@ -17,7 +17,9 @@ v-for="(debt, index) in RegistryStore.debts"
       <input disabled v-model="RegistryStore.debts[index].Split" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
 
     
-      <button @click.prevent="RegistryStore.createDebt()">Accept Debt</button>
+      <button @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
+      <button @click.prevent="RegistryStore.rejectDebt()">Reject Debt</button>
+
     </form>
   </div>
 </div>

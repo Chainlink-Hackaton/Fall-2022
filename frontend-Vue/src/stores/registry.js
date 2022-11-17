@@ -102,8 +102,34 @@ export default defineStore("Registry", {
        
        //console.log(this.Ids)//If we get here and show the Id of the Debt, we make it!!!
     },
-    printDebt(){
-      return this.debts;
+    acceptDebt(id){
+      console.log("begin")
+        let web3 = new Web3(window.ethereum);
+        console.log("after provider")
+        const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+        const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+        //TO DO: Here a need those values from the form
+        console.log("after registry")
+
+        //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
+        registry.methods.acceptDebt(id).send({from:this.userAddress})
+        .then(result => {this.contractResult = result; console.log(result)});
+        console.log("rompe 3")
+
+    },
+    rejectDebt(id){
+      console.log("begin")
+        let web3 = new Web3(window.ethereum);
+        console.log("after provider")
+        const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+        const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+        //TO DO: Here a need those values from the form
+        console.log("after registry")
+
+        //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
+        registry.methods.rejectId(id).send({from:this.userAddress})
+        .then(result => {this.contractResult = result; console.log(result)});
+        console.log("rompe 3")
     }
   },
 });
