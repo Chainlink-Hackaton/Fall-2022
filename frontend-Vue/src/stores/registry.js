@@ -55,7 +55,7 @@ export default defineStore("Registry", {
           }
           this.debts = list;
           console.log(list)
-          console.log(this.debt)
+          console.log(this.debts)
           }))
         });
       }

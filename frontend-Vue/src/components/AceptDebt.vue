@@ -1,23 +1,26 @@
 <template>
+<div
+v-for="(debt, index) in RegistryStore.debts"
+:key="index">
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
-    <h3>{{RegistryStore.printDebt()}}</h3>
     <form>
-      <input disabled v-model="RegistryStore.debtAmount" placeholder="Lender Address" type="text" />
+      <input disabled v-model="RegistryStore.debts[index].Owner" placeholder="Lender Address" type="text" />
 
-      <input disabled v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
+      <input disabled v-model="RegistryStore.debts[index].Currency" placeholder="Currency" list="currencys" name="currency" id="list" />
 
-      <input disabled v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
+      <input disabled v-model="RegistryStore.debts[index].Amount" placeholder="Amount" type="text" />
 
-      <input disabled v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
+      <input disabled v-model="RegistryStore.debts[index].Deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
 
 
-      <input disabled v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
+      <input disabled v-model="RegistryStore.debts[index].Split" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
 
     
       <button @click.prevent="RegistryStore.createDebt()">Accept Debt</button>
     </form>
   </div>
+</div>
 </template>
 <!--
     address lender,
