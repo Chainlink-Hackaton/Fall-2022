@@ -1,6 +1,7 @@
 <template>
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
+    <h3>{{RegistryStore.printDebt()}}</h3>
     <form>
       <input disabled v-model="RegistryStore.debtAmount" placeholder="Lender Address" type="text" />
 

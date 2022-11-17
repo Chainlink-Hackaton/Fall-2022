@@ -22,7 +22,9 @@ export default defineStore("Registry", {
       debtAmount : ref(10),
       deadline : ref(365 * 24 * 60 * 60),
       splits : ref(50),
-      contractResult: ref("")
+      contractResult: ref(""),
+      debts: ref({})
+      
     };
   },
   actions: {
@@ -40,16 +42,21 @@ export default defineStore("Registry", {
             filter: {lender: this.userAddress}, // Using an array means OR: e.g. 20 or 23
             fromBlock: 0,
             toBlock: 'latest'
-          }, async function(error, events){ 
-            //console.log(events);
-            for(let e in events){
-              //console.log(events[e].returnValues.id)
-              const id = events[e].returnValues.id
-            //   console.log(id)
-            const debt = await registry.methods.Debts(id).call();
-            console.log(debt)
-            }
-          })
+        }).then((async (events) => {
+          console.log(events);
+          const list = []
+          for(let e in events){
+          //console.log(events[e].returnValues.id)
+          const id = events[e].returnValues.id
+          //   console.log(id)
+          const debt2 = await registry.methods.Debts(id).call();
+          list.push(debt2)
+          console.log(debt2)
+          }
+          this.debts = list;
+          console.log(list)
+          console.log(this.debt)
+          }))
         });
       }
 
@@ -78,7 +85,7 @@ export default defineStore("Registry", {
         console.log("after registry")
 
         //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
-        registry.methods.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits).send({from:"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"})
+        registry.methods.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits).send({from:"0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"})
         .then(result => {this.contractResult = result; console.log(result)});
         console.log("rompe 3")
 
@@ -94,6 +101,9 @@ export default defineStore("Registry", {
        //registry.events.DebtCreated({filter: {borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"}}, function(error, event){ console.log(event); } )
        
        //console.log(this.Ids)//If we get here and show the Id of the Debt, we make it!!!
+    },
+    printDebt(){
+      return this.debts;
     }
   },
 });
