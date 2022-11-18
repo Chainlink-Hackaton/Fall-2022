@@ -10,10 +10,11 @@
                 <li class="nav-item">Lender</li>
                 <li class="nav-item">Payer</li>
             </ul>
+            
 
             <div>
                 <button v-if="RegistryStore.connected == false" class = "btn btn-light btn-met nav-item " type="button" @click="RegistryStore.connect()">Connect<img class="metamask-logo" src="../assets/Metamask.png" alt="Metamask Logo"/></button>
-                <button v-else="RegistryStore.connected == true" class = "btn btn-light btn-met nav-item " type="button">Connected<img class="metamask-logo" src="../assets/Metamask.png" alt="Metamask Logo"/></button>
+                <button v-else="RegistryStore.connected == true" class = "btn btn-light btn-met nav-item btn-2 " type="button"><img class="green-check" src="../assets/Green.png" alt="Green Check"/>{{RegistryStore.userAddress.slice(0,3) + "..." + RegistryStore.userAddress.slice(-3) }}<img class="metamask-logo" src="../assets/Metamask.png" alt="Metamask Logo"/></button>
             </div>
 
 
@@ -105,6 +106,13 @@ a {
     padding-left: 0px;
     margin: 0px;
     width: 50px;
+}
+
+.green-check{
+    padding-right: 10px;
+    padding-left: 0px;
+    margin: 0px;
+    width: 25px;
 }
 
 .nav-link {
