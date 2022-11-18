@@ -1,16 +1,20 @@
 <template>
-    <div>
-        {{RegistryStore.debts}}
-        {{RegistryStore.txhash}}
-    </div>
+<div
+v-for="(item, key, index) in RegistryStore.txhash"
+:key="index">
+  <div class="form animated flipInX">
+
+    <br />
+    <form>
+      <input disabled v-model="RegistryStore.txhash.key" placeholder="Lender Address" type="text" />
+
+      <!--<input disabled v-model="RegistryStore.txhash[key].Currency" placeholder="Currency" list="currencys" name="currency" id="list" />-->
+    
+      <button class="acceptDebt" @click.prevent="RegistryStore.connect()">Accept Debt</button>
+    </form>
+  </div>
+</div>
     </template>
-    <!--
-        address lender,
-            address currency,
-            uint amount,
-            uint timeToPay,
-            uint numberOfPayments
-    -->
     
     <script>
     import { ref } from "vue"
