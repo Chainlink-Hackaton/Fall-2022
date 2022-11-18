@@ -1,4 +1,5 @@
 <template>
+      <h1><b>Our Techs</b></h1>
         <div class="client-logo">
             <a href="#" target="_blank">
                 <img class="logos" src="../assets/chainlink-logo.png" alt="ChainLink">
@@ -39,6 +40,7 @@ export default {
 
 
 .logos {
+  margin-top: 30%;
   width: 4rem;
   filter: invert(40%) sepia(8%) saturate(15%) hue-rotate(39deg) brightness(93%)
     contrast(86%);
