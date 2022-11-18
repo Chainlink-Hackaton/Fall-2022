@@ -4,11 +4,11 @@ v-for="(debt, index) in RegistryStore.debts"
 :key="index">
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
-
-    <h6 v-if="RegistryStore.debts[index].status === '0'">Debt status: pending</h6>
-    <h6 v-else-if="RegistryStore.debts[index].status === '1'">Debt status: pending</h6>
-    <h6 v-else-if="RegistryStore.debts[index].status === '2'">Debt status: pending</h6>
-    <h6 v-else>Debt status: pending</h6>
+    <h6 v-if="RegistryStore.debts[index].status === '0'">Debt status: <h6 class="text-warning">Pending</h6></h6>
+    <h6 v-else-if="RegistryStore.debts[index].status === '1'">Debt status:  <h6 class="text-success">Approved</h6></h6>
+    <h6 v-else-if="RegistryStore.debts[index].status === '2'">Debt status:  <h6 class="text-danger">Rejected</h6></h6>
+    <h6 v-else-if="RegistryStore.debts[index].status === '3'">Debt status:  <h6 class="text-approved">Paid</h6></h6>
+    <h6 v-else>Debt status: <h6 class="text-secondary">Default</h6></h6>
 
     <br />
     <form>

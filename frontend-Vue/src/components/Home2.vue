@@ -93,7 +93,7 @@ export default {
 
 #boy {
   position: relative;
-  width: 180px;
+  width: 300px;
 }
 
 #hero-banner .animated {
