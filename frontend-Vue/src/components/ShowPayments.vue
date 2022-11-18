@@ -1,13 +1,10 @@
 <template>
-    <div
-    v-for="(hash, index) in RegistryStore.txhash"
-    :key="index">
+    <div>
       <div class="form animated flipInX">
 
     
         <br />
-        <h1>{{hash}}</h1>
-        <h2>{{index}}</h2>
+        <h1>{{RegistryStore.txhash}}</h1>
         <form>
           <input disabled  placeholder="Lender Address" type="text" />
     
