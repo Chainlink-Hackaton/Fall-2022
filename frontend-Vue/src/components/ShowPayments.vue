@@ -1,17 +1,7 @@
 <template>
     <div>
-      <div class="form animated flipInX">
-
-    
-        <br />
-        <h1>{{RegistryStore.txhash}}</h1>
-        <form>
-          <input disabled  placeholder="Lender Address" type="text" />
-    
-          <input disabled  placeholder="Currency" list="currencys" name="currency" id="list" />
-        
-        </form>
-      </div>
+        {{RegistryStore.debts}}
+        {{RegistryStore.txhash}}
     </div>
     </template>
     <!--
