@@ -21,8 +21,8 @@ v-for="(debt, index) in RegistryStore.debts"
       <input disabled v-model="RegistryStore.debts[index].Split" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
 
     
-      <button @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
-      <button @click.prevent="RegistryStore.rejectDebt()">Reject Debt</button>
+      <button class="acceptDebt" @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
+      <button class="rejectDebt" @click.prevent="RegistryStore.rejectDebt()">Reject Debt</button>
 
     </form>
   </div>
@@ -124,5 +124,18 @@ export default {
 }
 .form button:hover {
   background: #369cb8;
+}
+
+.acceptDebt{
+  width: 50% !important;
+}
+
+.rejectDebt{
+  background: rgb(255, 76, 48) !important;
+  width: 50% !important;
+}
+
+.form .rejectDebt:hover {
+  background: rgb(175, 65, 84) !important;
 }
 </style>
