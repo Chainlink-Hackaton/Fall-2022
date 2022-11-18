@@ -5,7 +5,10 @@ v-for="(debt, index) in RegistryStore.debts"
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
 
-    <h6 v-if="RegistryStore.debts[index].status === '1'">Debt status: pending</h6>
+    <h6 v-if="RegistryStore.debts[index].status === '0'">Debt status: pending</h6>
+    <h6 v-else-if="RegistryStore.debts[index].status === '1'">Debt status: pending</h6>
+    <h6 v-else-if="RegistryStore.debts[index].status === '2'">Debt status: pending</h6>
+    <h6 v-else>Debt status: pending</h6>
 
     <br />
     <form>
@@ -76,6 +79,10 @@ export default {
   margin-bottom: 5%;
   padding: 30px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+h6{
+  color: #44c4e7;
 }
 
 .form h2 {
