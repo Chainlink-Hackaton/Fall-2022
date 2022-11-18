@@ -58,6 +58,10 @@ h2{
     padding-left: 15px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .devs{
     width: 250px;
     border-radius: 30%;
