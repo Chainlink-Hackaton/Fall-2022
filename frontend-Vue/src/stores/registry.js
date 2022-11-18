@@ -24,6 +24,7 @@ export default defineStore("Registry", {
       splits : ref(50),
       contractResult: ref(""),
       debts: ref({}),
+      txhash: ref("")
       
     };
   },
@@ -40,6 +41,43 @@ export default defineStore("Registry", {
           const registry = new web3.eth.Contract(Registry.abi, registryAddress)
           registry.getPastEvents('DebtCreated', {
             filter: {lender: this.userAddress}, // Using an array means OR: e.g. 20 or 23
+            fromBlock: 0,
+            toBlock: 'latest'
+        }).then((async (events) => {
+          console.log(events);
+          const list = []
+          for(let e in events){
+          //console.log(events[e].returnValues.id)
+          const id = events[e].returnValues.id
+          //   console.log(id)
+          const debt2 = await registry.methods.Debts(id).call();
+          const payments = await registry.methods.getPayments(id).call();
+
+          list.push(debt2)
+          console.log(debt2)
+          console.log("payments: ",payments)
+          }
+          this.debts = list;
+          console.log(list)
+          console.log(this.debts)
+          }))
+        });
+      }
+
+
+    },
+    connectBorrower(){
+      if (window.ethereum) {
+        window.ethereum.request({method: "eth_requestAccounts"})
+        .then((address) => {
+          this.connected = true
+          this.userAddress = address[0]
+          console.log(this.userAddress)
+          let web3 = new Web3(window.ethereum);
+          const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+          registry.getPastEvents('DebtCreated', {
+            filter: {borrower: this.userAddress}, // Using an array means OR: e.g. 20 or 23
             fromBlock: 0,
             toBlock: 'latest'
         }).then((async (events) => {
@@ -138,6 +176,16 @@ export default defineStore("Registry", {
       const registry = new web3.eth.Contract(Registry.abi, registryAddress)
       
       registry.methods.registerPayment(Id, txhash).send({from: this.userAddress})
+      .then(result => {this.contractResult = result; console.log(result)});
+      console.log("rompe 3")
+    },
+    getPayments(Id){
+      let web3 = new Web3(window.ethereum);
+      console.log("after provider")
+      const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+      const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+      
+      registry.methods.getPayments(Id).send({from: this.userAddress})
       .then(result => {this.contractResult = result; console.log(result)});
       console.log("rompe 3")
     }

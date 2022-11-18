@@ -4,10 +4,10 @@ async function main() {
 
   const amount = ethers.BigNumber.from("35000000000000000000") 
   const debtAmount = amount;
-  const lender = "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"
+  const borrower = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"
 
   // Contracts are deployed using the first signer/account by default
-  const [owner, borrower] = await ethers.getSigners();
+  const [owner] = await ethers.getSigners();
 
 
   const Registry = await ethers.getContractFactory("Registry");
@@ -18,8 +18,8 @@ async function main() {
   const token = await Token.deploy();
   console.log(`Token deployed to ${token.address}`);
   await token.mint(debtAmount);
-  await token.transfer(lender, debtAmount);
-  const balance = await token.balanceOf(lender);
+  await token.transfer(borrower, debtAmount);
+  const balance = await token.balanceOf(borrower);
   console.log("balance: ", balance)
 }
 

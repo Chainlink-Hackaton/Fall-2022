@@ -8,9 +8,9 @@
         <form>
           <input disabled v-model="RegistryStore.debts[index].Id" placeholder="Lender Address" type="text" />
     
-          <input  v-model="RegistryStore.debts[index].Currency" placeholder="Transaction Hash" list="txhash" name="txhash" type="text" />    
+          <input  v-model="RegistryStore.txhash" placeholder="Transaction Hash" list="txhash" name="txhash" type="text" />    
         
-          <button class="registerPayment" @click.prevent="RegistryStore.registerPayment(RegistryStore.debts[index].Id, )">Register Payment</button>
+          <button class="registerPayment" @click.prevent="RegistryStore.registerPayment(RegistryStore.debts[index].Id, RegistryStore.txhash)">Register Payment</button>
     
         </form>
       </div>
@@ -45,7 +45,7 @@
       },
     
       mounted(){
-        this.RegistryStore.connect()
+        this.RegistryStore.connectBorrower()
       }
     };
     </script>
