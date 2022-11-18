@@ -1,13 +1,13 @@
 <template>
-    <AceptDebt />
+    <AcceptDebt />
   </template>
   
   <script>
-  import AceptDebt from "../components/AceptDebt.vue";
+  import AcceptDebt from "../components/AcceptDebt.vue";
   
   export default {
     components: {
-      AceptDebt,
+      AcceptDebt,
     },
     setup() {
       return {};

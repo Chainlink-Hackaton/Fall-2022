@@ -45,7 +45,7 @@ import {mapStores} from "pinia";
 import useRegistryStore from "../stores/registry.js"
 
 export default {
-  name: "AceptDebt",
+  name: "AcceptDebt",
   setup() {
     return {
     };

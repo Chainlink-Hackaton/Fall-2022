@@ -33,7 +33,7 @@ import Debt from "./components/Debt.vue"
 import Home2 from "./components/Home2.vue"
 import Techs from "./components/Techs.vue"
 import Services from "./components/Services.vue"
-import AceptDebt from "./components/AceptDebt.vue"
+import AcceptDebt from "./components/AcceptDebt.vue"
 
 //import Header from "./components/Footer.vue";
 //import Web3 from "web3";
@@ -54,7 +54,7 @@ export default {
     Home2,
     Techs,
     Services,
-    AceptDebt
+    AcceptDebt
   },
   methods: {
   }

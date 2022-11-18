@@ -2,7 +2,7 @@ import App from "../App.vue"
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Debt from '../views/Debt.vue'
-import AceptDebt from '../views/AceptDebt.vue'
+import AcceptDebt from '../views/AcceptDebt.vue'
 
 
  
@@ -18,9 +18,9 @@ const routes = [
     component: Debt,
   },
   {
-    path: '/acept',
-    name: 'AceptDebt',
-    component: AceptDebt,
+    path: '/accept',
+    name: 'AcceptDebt',
+    component: AcceptDebt,
   }
 
 ];
