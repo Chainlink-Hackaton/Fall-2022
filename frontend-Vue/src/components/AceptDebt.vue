@@ -4,6 +4,10 @@ v-for="(debt, index) in RegistryStore.debts"
 :key="index">
   <div class="form animated flipInX">
     <h2>Accept a Debt</h2>
+
+    <h6 v-if="RegistryStore.debts[index].status === '1'">Debt status: pending</h6>
+
+    <br />
     <form>
       <input disabled v-model="RegistryStore.debts[index].Owner" placeholder="Lender Address" type="text" />
 
