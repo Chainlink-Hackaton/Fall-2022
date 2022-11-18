@@ -16,7 +16,7 @@ export default defineStore("Registry", {
       connected: ref(false),
       userAddress: ref(""),
       registry: ref(),
-      Ids: [],
+      Ids: ref(""),
       lenderAddress : ref("0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"),
       tokenAddress : ref("0x90F79bf6EB2c4f870365E785982E1f101E93b906"),
       debtAmount : ref(10),
@@ -24,7 +24,8 @@ export default defineStore("Registry", {
       splits : ref(50),
       contractResult: ref(""),
       debts: ref({}),
-      txhash: ref("")
+      txhash: ref({})
+
       
     };
   },
@@ -46,20 +47,26 @@ export default defineStore("Registry", {
         }).then((async (events) => {
           console.log(events);
           const list = []
+          const txs = {}
+
           for(let e in events){
           //console.log(events[e].returnValues.id)
           const id = events[e].returnValues.id
           //   console.log(id)
           const debt2 = await registry.methods.Debts(id).call();
           const payments = await registry.methods.getPayments(id).call();
-
           list.push(debt2)
+          this.txhash[id] = [payments]
           console.log(debt2)
           console.log("payments: ",payments)
           }
+
           this.debts = list;
           console.log(list)
           console.log(this.debts)
+          console.log(txs)
+          console.log(this.txhash)
+
           }))
         });
       }
