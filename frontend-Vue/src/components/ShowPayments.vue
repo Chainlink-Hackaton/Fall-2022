@@ -1,28 +1,15 @@
 <template>
     <div
-    v-for="(debt, index) in RegistryStore.tx"
+    v-for="(hash, index) in RegistryStore.txhash"
     :key="index">
       <div class="form animated flipInX">
-        <h2>Accept a Debt</h2>
-        <h6 v-if="RegistryStore.debts[index].status === '0'">Debt status: <h6 class="text-warning">Pending</h6></h6>
-        <h6 v-else-if="RegistryStore.debts[index].status === '1'">Debt status:  <h6 class="text-success">Approved</h6></h6>
-        <h6 v-else-if="RegistryStore.debts[index].status === '2'">Debt status:  <h6 class="text-danger">Rejected</h6></h6>
-        <h6 v-else-if="RegistryStore.debts[index].status === '3'">Debt status:  <h6 class="text-approved">Paid</h6></h6>
-        <h6 v-else>Debt status: <h6 class="text-secondary">Default</h6></h6>
+
     
         <br />
         <form>
-          <input disabled v-model="RegistryStore.debts[index].Owner" placeholder="Lender Address" type="text" />
+          <input disabled v-model="hash" placeholder="Lender Address" type="text" />
     
-          <input disabled v-model="RegistryStore.debts[index].Currency" placeholder="Currency" list="currencys" name="currency" id="list" />
-    
-          <input disabled v-model="RegistryStore.debts[index].Amount" placeholder="Amount" type="text" />
-    
-          <input disabled v-model="RegistryStore.debts[index].Deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
-    
-    
-          <input disabled v-model="RegistryStore.debts[index].Split" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
-    
+          <input disabled v-model="index" placeholder="Currency" list="currencys" name="currency" id="list" />
         
           <button class="acceptDebt" @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
           <button class="rejectDebt" @click.prevent="RegistryStore.rejectDebt(RegistryStore.debts[index].Id)">Reject Debt</button>
@@ -45,7 +32,7 @@
     import useRegistryStore from "../stores/registry.js"
     
     export default {
-      name: "ShowPayments",
+      name: "AcceptDebt",
       setup() {
         return {
         };
