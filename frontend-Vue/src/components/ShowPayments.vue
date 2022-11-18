@@ -1,23 +1,21 @@
 <template>
-<div
-    v-for="(id, index) in RegistryStore.txhash"
-    :key="index">
-      <div class="form animated flipInX">
-        <h2>Check Payments</h2>
-        <br />
-        <form>
-            <h6>Debt hash:</h6>
-<input  v-model="RegistryStore.txhash[index]" placeholder="Transaction Hash" list="txhash" name="txhash" type="text" /> 
-            <h6>Payment hash:</h6>
-          <!-- <input 
+  <div v-for="(id, index) in RegistryStore.txhash" :key="index">
+    <div class="form animated flipInX">
+      <h2>Check Payments</h2>
+      <br />
+      <form>
+        <h6>Debt hash:</h6>
+        <input v-model="RegistryStore.txhash[index]" placeholder="Transaction Hash" list="txhash" name="txhash"
+          type="text" />
+        <!-- <input 
           v-for="(payment, index2) in RegistryStore.txhash[index]"
           disabled v-model="RegistryStore.txhash[index].payment[index2]" placeholder="Lender Address" type="text" />
 <button class="registerPayment" @click.prevent="RegistryStore.registerPayment(RegistryStore.debts[index].Id, )">Accept Payment</button>
      -->
-        </form>
-      </div>
+      </form>
     </div>
-            
+  </div>
+
 </template>
     
 <script>

@@ -33,7 +33,9 @@ export default {
 <style>
 
 h1{
+
     text-align: center;
+    margin-top: 10%;
     color: white;
     padding-top: 5%;
     padding-bottom: 5%;
