@@ -10,9 +10,6 @@
     
           <input disabled  placeholder="Currency" list="currencys" name="currency" id="list" />
         
-          <button class="acceptDebt" @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
-          <button class="rejectDebt" @click.prevent="RegistryStore.rejectDebt(RegistryStore.debts[index].Id)">Reject Debt</button>
-    
         </form>
       </div>
     </div>
@@ -31,7 +28,7 @@
     import useRegistryStore from "../stores/registry.js"
     
     export default {
-      name: "AcceptDebt",
+      name: "ShowPayments",
       setup() {
         return {
         };
