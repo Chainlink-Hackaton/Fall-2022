@@ -6,10 +6,12 @@
 
     
         <br />
+        <h1>{{hash}}</h1>
+        <h2>{{index}}</h2>
         <form>
-          <input disabled v-model="hash" placeholder="Lender Address" type="text" />
+          <input disabled  placeholder="Lender Address" type="text" />
     
-          <input disabled v-model="index" placeholder="Currency" list="currencys" name="currency" id="list" />
+          <input disabled  placeholder="Currency" list="currencys" name="currency" id="list" />
         
           <button class="acceptDebt" @click.prevent="RegistryStore.acceptDebt(RegistryStore.debts[index].Id)">Accept Debt</button>
           <button class="rejectDebt" @click.prevent="RegistryStore.rejectDebt(RegistryStore.debts[index].Id)">Reject Debt</button>
