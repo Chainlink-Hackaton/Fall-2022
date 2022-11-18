@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Debt from '../views/Debt.vue'
 import AcceptDebt from '../views/AcceptDebt.vue'
 import Payment from '../views/Payment.vue'
+import ShowPayments from '../views/ShowPayments.vue'
 
 
  
@@ -27,6 +28,11 @@ const routes = [
     path: '/payment',
     name: 'Payment',
     component: Payment,
+  },
+  {
+    path: '/showPayment',
+    name: 'ShowPayments',
+    component: ShowPayments,
   }
 
 ];
