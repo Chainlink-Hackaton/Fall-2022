@@ -85,7 +85,7 @@ export default defineStore("Registry", {
         console.log("after registry")
 
         //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
-        registry.methods.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits).send({from:"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"})
+        registry.methods.createDebt(this.lenderAddress, this.tokenAddress, this.debtAmount, this.deadline, this.splits).send({from:this.userAddress})
         .then(result => {this.contractResult = result; console.log(result)});
         console.log("rompe 3")
 
@@ -127,9 +127,20 @@ export default defineStore("Registry", {
         console.log("after registry")
 
         //await registry.createDebt(lender.address, token.address, debtAmount, ONE_YEAR_IN_SECS, splits)}
-        registry.methods.rejectId(id).send({from:this.userAddress})
+        registry.methods.rejectDebt(id).send({from:this.userAddress})
         .then(result => {this.contractResult = result; console.log(result)});
         console.log("rompe 3")
+    }, 
+    registerPayment(Id, txhash){
+      let web3 = new Web3(window.ethereum);
+      console.log("after provider")
+      const registryAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+      const registry = new web3.eth.Contract(Registry.abi, registryAddress)
+      
+      registry.methods.registerPayment(Id, txhash).send({from: this.userAddress})
+      .then(result => {this.contractResult = result; console.log(result)});
+      console.log("rompe 3")
     }
+
   },
 });
