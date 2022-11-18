@@ -23,7 +23,7 @@ export default defineStore("Registry", {
       deadline : ref(365 * 24 * 60 * 60),
       splits : ref(50),
       contractResult: ref(""),
-      debts: ref({})
+      debts: ref({}),
       
     };
   },
