@@ -19,6 +19,7 @@
       >
         <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/debt">Create Debt</router-link></li>
+        <li class="nav-item"><router-link class="nav-link" to="/accept">Accept Debt</router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/payment">Register Payment</router-link></li>
         <li class="nav-item"><router-link class="nav-link" to="/showPayments">Review Payments</router-link></li>
       </ul>
