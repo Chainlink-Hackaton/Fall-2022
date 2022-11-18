@@ -18,7 +18,7 @@ export default defineStore("Registry", {
       registry: ref(),
       Ids: ref(""),
       lenderAddress : ref("0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"),
-      tokenAddress : ref("0x90F79bf6EB2c4f870365E785982E1f101E93b906"),
+      tokenAddress : ref("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"),
       debtAmount : ref(10),
       deadline : ref(365 * 24 * 60 * 60),
       splits : ref(50),
