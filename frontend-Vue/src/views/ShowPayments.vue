@@ -1,5 +1,5 @@
 <template>
-    <Debt />
+    <ShowPayments />
   </template>
   
   <script>

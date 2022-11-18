@@ -30,7 +30,7 @@ const routes = [
     component: Payment,
   },
   {
-    path: '/showPayment',
+    path: '/showPayments',
     name: 'ShowPayments',
     component: ShowPayments,
   }
