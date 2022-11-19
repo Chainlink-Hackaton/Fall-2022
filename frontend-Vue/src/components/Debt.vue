@@ -2,17 +2,18 @@
   <div class="form animated flipInX">
     <h2>Create a Debt</h2>
     <form>
-      <input placeholder="Lender Address" type="text" />
+      <input v-model="RegistryStore.lenderAddress" placeholder="Lender Address" type="text" />
 
-      <input placeholder="Currency" list="currencys" name="currency" id="list" />
+      <input v-model="RegistryStore.tokenAddress" placeholder="Currency" list="currencys" name="currency" id="list" />
       <datalist id="currencys">
         <option value="ETH"></option>
         <option value="SOL"></option>
       </datalist>
 
-      <input placeholder="Amount" type="text" />
 
-      <input placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
+      <input v-model="RegistryStore.debtAmount" placeholder="Amount" type="text" />
+
+      <input v-model="RegistryStore.deadline" placeholder="Time to Pay" list="timeToPay" name="timeToPay" id="list" />
       <datalist id="timeToPay">
         <option value="3 months"></option>
         <option value="6 months"></option>
@@ -20,14 +21,15 @@
         <option value="12 months"></option>
       </datalist>
 
-      <input placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
+      <input v-model="RegistryStore.splits" placeholder="Number of Payments" list="numberOfPayments" name="numberOfPayments" id="list" />
       <datalist id="numberOfPayments">
         <option value="3 payments"></option>
         <option value="6 payments"></option>
         <option value="9 payments"></option>
         <option value="12 payments"></option>
       </datalist>
-      <button>Registry Debt</button>
+    
+      <button @click.prevent="RegistryStore.createDebt()">Registry Debt</button>
     </form>
   </div>
 </template>
@@ -40,40 +42,28 @@
 -->
 
 <script>
+import { ref } from "vue"
+import {mapStores} from "pinia";
+import useRegistryStore from "../stores/registry.js"
+
 export default {
   name: "Debt",
   setup() {
-    return {};
+    return {
+    };
   },
+
+  methods: {
+
+  },  
+
+  computed: {
+    ...mapStores(useRegistryStore)
+  }
 };
 </script>
+
 <style>
-body {
-  background: #44c4e7
-    url("https://38.media.tumblr.com/d23deac40b06633b79520a8552f40b94/tumblr_nb1uhrRrge1st5lhmo1_1280.jpg")
-    no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  font-family: "Roboto";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body::before {
-  z-index: -1;
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #44c4e7;
-  /* IE Fallback */
-  background: rgba(68, 196, 231, 0.8);
-  width: 100%;
-  height: 100%;
-}
-
-
 .form {
   display: flex;
   flex-wrap: nowrap;

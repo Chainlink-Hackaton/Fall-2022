@@ -9,8 +9,10 @@ import "@fortawesome/fontawesome-free/js/all.js"
 
 import { createPinia } from "pinia"
 
+import router from './router/index'
+
 //import router from "./router/index"
 
 const pinia = createPinia()
 
-createApp(App).use(pinia)/*.use(router)*/.mount('#app')
+createApp(App).use(pinia).use(router).mount('#app')

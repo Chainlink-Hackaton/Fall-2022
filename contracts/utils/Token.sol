@@ -8,6 +8,8 @@ contract Token {
     // The `public` modifier makes a variable readable from outside the contract.
     string public name = "Dummy Token";
     string public symbol = "DUMMY";
+    uint8 public decimals = 18;
+
 
     // The fixed amount of tokens stored in an unsigned integer type variable.
     uint256 public totalSupply = 1000000;
@@ -65,4 +67,5 @@ contract Token {
         balances[msg.sender] += amount;
         totalSupply += amount;
     }
+
 }
